@@ -14,31 +14,26 @@ const Button = ({
     <TouchableOpacity
       onPress={onPress}
       style={{
-        height: 45,
-        width: '100%',
-        paddingHorizontal: 15,
+        height: 44,
+        width: 356,
         alignItems: 'center',
         justifyContent: 'center',
-        flexDirection: 'row',
+        backgroundColor: '#0050C8',
         marginVertical: 10,
         borderRadius: 8,
         ...style,
       }}
-      disabled={disabled}
-      {...props}
     >
-      {loading ? (
-        <ActivityIndicator size="small" color={color} animating />
-      ) : (
-        <Text
-          style={{
-            fontSize: 16,
-            ...textStyle,
-          }}
-        >
-          {text}
-        </Text>
-      )}
+      <Text
+        style={{
+          fontSize: 16,
+          fontFamily: 'UbuntuRegular',
+          color: 'white',
+          ...textStyle,
+        }}
+      >
+        {text}
+      </Text>
     </TouchableOpacity>
   )
 }
