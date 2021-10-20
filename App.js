@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, StatusBar, Text, View } from 'react-native'
 import { useFonts } from 'expo-font'
+import Navigation from './navigation/index'
 
 const customFonts = {
   UbuntuLight: require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -17,7 +18,8 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <Text></Text>
+      <StatusBar barStyle="light-content" animated />
+      <View style={styles.wrapper}>{fontsLoaded && <Navigation />}</View>
     </View>
   )
 }
@@ -27,7 +29,8 @@ export default App
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  },
+  wrapper: {
+    flex: 1,
   },
 })
