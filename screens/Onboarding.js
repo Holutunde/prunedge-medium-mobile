@@ -32,7 +32,7 @@ const onBoardings = [
   },
 ]
 
-const OnBoarding = () => {
+const OnBoarding = ({ navigation }) => {
   const scrollX = new Animated.Value(0)
 
   const renderContent = () => {
@@ -108,7 +108,7 @@ const OnBoarding = () => {
       <View>{renderContent()}</View>
       <View style={styles.dotsRootContainer}>{renderDots()}</View>
       <View style={styles.button}>
-        <Button text="Continue" />
+        <Button onPress={() => navigation.navigate('Home')} text="Continue" />
       </View>
     </SafeAreaView>
   )
