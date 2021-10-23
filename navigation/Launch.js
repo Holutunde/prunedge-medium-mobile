@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useDispatch } from 'react-redux'
 import Loader from '../components/Loader'
 import { saveUser } from '../redux/actions/auth'
 import OnBoarding from '../screens/Onboarding'
@@ -11,7 +10,6 @@ const Launch = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
   const [viewedOboarding, setViewOboarding] = useState(false)
 
-  const dispatch = useDispatch()
   useEffect(() => {
     redirect()
   }, [])
