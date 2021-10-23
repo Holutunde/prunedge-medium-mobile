@@ -108,7 +108,7 @@ const OnBoarding = ({ navigation }) => {
       <View>{renderContent()}</View>
       <View style={styles.dotsRootContainer}>{renderDots()}</View>
       <View style={styles.button}>
-        <Button onPress={() => navigation.navigate('Home')} text="Continue" />
+        <Button onPress={() => navigation.navigate('Login')} text="Continue" />
       </View>
     </SafeAreaView>
   )

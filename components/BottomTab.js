@@ -6,13 +6,16 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
+import SvgUri from 'expo-svg-uri'
 
-import HomeIcon from '../assets/icon/home-nav-icon.svg'
 import ExploreIcon from '../assets/icon/explore-nav-icon.svg'
 import BookmarkIcon from '../assets/icon/bookmark-nav-icon.svg'
 import SettingIcon from '../assets/icon/setting-nav-icon.svg'
 
 const BottomTab = ({ navigation }) => {
+  const HomeIcon = () => {
+    ;<SvgUri source={require('../assets/icon/telephone-icon.svg')} />
+  }
   const activeIndex = navigation.state.index
   const links = [
     {
@@ -24,19 +27,19 @@ const BottomTab = ({ navigation }) => {
     {
       text: 'Explore',
       link: 'ExploreStack',
-      renderIcon: (style) => <ExploreIcon {...style} />,
+      renderIcon: (style) => <HomeIcon {...style} />,
       index: 1,
     },
     {
       text: 'Bookmarks',
       link: 'BookmarkStack',
-      renderIcon: (style) => <BookmarkIcon {...style} />,
+      renderIcon: (style) => <HomeIcon {...style} />,
       index: 2,
     },
     {
       text: 'Settings',
       link: 'SettingStack',
-      renderIcon: (style) => <SettingIcon {...style} />,
+      renderIcon: (style) => <HomeIcon {...style} />,
       index: 3,
     },
   ]
@@ -58,7 +61,7 @@ const BottomTab = ({ navigation }) => {
               onPress={() => navigation.navigate(link)}
               style={styles.item}
             >
-              {/* //{renderIcon(iconStyles)} */}
+              {/* {renderIcon(iconStyles)} */}
               <Text
                 style={{
                   ...styles.itemText,

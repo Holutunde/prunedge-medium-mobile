@@ -29,6 +29,7 @@ export const BoldText = ({ style = {}, children, ...props }) => {
     <NativeText
       style={{
         fontFamily: 'UbuntuMedium',
+        color: '#393A4A',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         ...styles,
         ...style,

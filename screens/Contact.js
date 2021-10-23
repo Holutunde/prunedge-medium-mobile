@@ -8,20 +8,13 @@ import {
   TouchableOpacity,
 } from 'react-native'
 import SvgUri from 'expo-svg-uri'
+import Header from '../components/Header'
 import SmallText, { VeryBoldText, BoldText } from '../components/Text'
 
 const Setting = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.titlecontainer}>
-        <Pressable onPress={() => navigation.goBack()}>
-          <SvgUri
-            style={styles.backarrow}
-            source={require('../assets/icon/back-arrow-icon.svg')}
-          />
-        </Pressable>
-        <Text style={styles.title}>Contact Us</Text>
-      </View>
+      <Header>Contact Us</Header>
       <View style={styles.imageContainer}>
         <SvgUri
           style={styles.image}
@@ -107,21 +100,6 @@ export default Setting
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  titlecontainer: {
-    paddingLeft: 20,
-    paddingTop: 40,
-    flexDirection: 'row',
-  },
-  backarrow: {
-    paddingTop: 7,
-    paddingRight: 15,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontFamily: 'UbuntuRegular',
-    fontSize: 20,
-    color: '#393A4A',
   },
   image: {
     marginTop: 60,

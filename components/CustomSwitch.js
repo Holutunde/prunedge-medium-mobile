@@ -2,7 +2,12 @@ import React, { useState } from 'react'
 
 import { View, TouchableOpacity } from 'react-native'
 
-const CustomSwitch = ({ selectionMode, roundCorner, selectionColor }) => {
+const CustomSwitch = ({
+  selectionMode,
+  roundCorner,
+  selectionColor,
+  ...props
+}) => {
   const [getSelectionMode, setSelectionMode] = useState(selectionMode)
   const [getRoundCorner, setRoundCorner] = useState(roundCorner)
 
@@ -24,6 +29,7 @@ const CustomSwitch = ({ selectionMode, roundCorner, selectionColor }) => {
           justifyContent: 'center',
           padding: 2,
         }}
+        {...props}
       >
         <TouchableOpacity
           activeOpacity={1}

@@ -1,14 +1,24 @@
 import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  Touchable,
+} from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import CustomSwitch from '../components/CustomSwitch'
+import { SingleHeader } from '../components/Header'
 
 const Setting = ({ navigation }) => {
+  const [isDarktheme, setIsDarktheme] = useState(false)
+
+  const toggleTheme = () => {
+    setIsDarktheme(!isDarktheme)
+  }
   return (
     <View style={styles.container}>
-      <View style={styles.titlecontainer}>
-        <Text style={styles.title}>Settings</Text>
-      </View>
+      <SingleHeader>Settings</SingleHeader>
       <View style={styles.imageContainer}>
         <SvgUri
           style={styles.image}
@@ -29,9 +39,15 @@ const Setting = ({ navigation }) => {
           <SvgUri source={require('../assets/icon/theme-icon.svg')} />
           <Text style={styles.text}>Dark Theme</Text>
         </View>
-        <View style={styles.switchcontainer}>
-          <CustomSwitch roundCorner={true} selectionColor={'#0050C8'} />
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            toggleTheme()
+          }}
+        >
+          <View pointerEvents="none">
+            <CustomSwitch roundCorner={true} selectionColor={'#0050C8'} />
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   )
