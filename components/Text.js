@@ -11,6 +11,7 @@ const Text = ({ style = {}, children, ...props }) => {
     <NativeText
       style={{
         fontFamily: 'UbuntuRegular',
+        color: '#393A4A',
         lineHeight: (style?.fontSize ?? fontSize) * 1.5,
         ...styles,
         ...style,

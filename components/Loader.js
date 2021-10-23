@@ -1,11 +1,7 @@
 import React from 'react'
 import { ActivityIndicator, View } from 'react-native'
-import { red } from '../config/colors'
 
-const Loader = ({
-  backgroundColor = '#fff',
-  color = red,
-}) => {
+const Loader = ({ backgroundColor = '#fff', color = 'red' }) => {
   return (
     <View
       style={{
@@ -15,11 +11,7 @@ const Loader = ({
         justifyContent: 'center',
       }}
     >
-      <ActivityIndicator
-        color={color}
-        animating
-        size="large"
-      />
+      <ActivityIndicator color={color} animating size="large" />
     </View>
   )
 }

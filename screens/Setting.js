@@ -1,11 +1,5 @@
 import React, { useState } from 'react'
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  View,
-  Touchable,
-} from 'react-native'
+import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import CustomSwitch from '../components/CustomSwitch'
 import { SingleHeader } from '../components/Header'

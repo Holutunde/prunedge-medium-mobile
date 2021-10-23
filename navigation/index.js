@@ -1,6 +1,5 @@
 import React from 'react'
 import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import Launch from './Launch'
 import Auth from './Auth'
 import Main from './Main'

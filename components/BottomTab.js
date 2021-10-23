@@ -6,16 +6,13 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native'
-import SvgUri from 'expo-svg-uri'
 
+import HomeIcon from '../assets/icon/home-nav-icon.svg'
 import ExploreIcon from '../assets/icon/explore-nav-icon.svg'
 import BookmarkIcon from '../assets/icon/bookmark-nav-icon.svg'
 import SettingIcon from '../assets/icon/setting-nav-icon.svg'
 
 const BottomTab = ({ navigation }) => {
-  const HomeIcon = () => {
-    ;<SvgUri source={require('../assets/icon/telephone-icon.svg')} />
-  }
   const activeIndex = navigation.state.index
   const links = [
     {
@@ -27,19 +24,19 @@ const BottomTab = ({ navigation }) => {
     {
       text: 'Explore',
       link: 'ExploreStack',
-      renderIcon: (style) => <HomeIcon {...style} />,
+      renderIcon: (style) => <ExploreIcon {...style} />,
       index: 1,
     },
     {
       text: 'Bookmarks',
       link: 'BookmarkStack',
-      renderIcon: (style) => <HomeIcon {...style} />,
+      renderIcon: (style) => <BookmarkIcon {...style} />,
       index: 2,
     },
     {
       text: 'Settings',
       link: 'SettingStack',
-      renderIcon: (style) => <HomeIcon {...style} />,
+      renderIcon: (style) => <SettingIcon {...style} />,
       index: 3,
     },
   ]

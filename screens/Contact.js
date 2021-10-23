@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import Header from '../components/Header'
-import SmallText, { VeryBoldText, BoldText } from '../components/Text'
+import SmallText from '../components/Text'
 
 const Setting = ({ navigation }) => {
   return (
