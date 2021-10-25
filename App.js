@@ -1,7 +1,10 @@
 import React from 'react'
 import { StyleSheet, StatusBar, Text, View } from 'react-native'
 import { useFonts } from 'expo-font'
+import { Provider } from 'react-redux'
+import { AppearanceProvider, useColorScheme } from 'react-native-appearance'
 import Navigation from './navigation/index'
+import store from './redux/store'
 
 const customFonts = {
   UbuntuLight: require('./assets/fonts/Ubuntu-Light.ttf'),
@@ -19,7 +22,9 @@ const App = () => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" animated />
-      <View style={styles.wrapper}>{fontsLoaded && <Navigation />}</View>
+      <Provider store={store}>
+        <View style={styles.wrapper}>{fontsLoaded && <Navigation />}</View>
+      </Provider>
     </View>
   )
 }

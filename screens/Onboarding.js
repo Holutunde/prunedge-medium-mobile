@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Animated,
   Dimensions,
@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import Button from '../components/Button'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const { width, height } = Dimensions.get('window')
 
@@ -32,8 +33,12 @@ const onBoardings = [
   },
 ]
 
-const OnBoarding = () => {
+const OnBoarding = ({ navigation }) => {
   const scrollX = new Animated.Value(0)
+
+  useEffect(() => {
+    AsyncStorage.setItem('user', 'true')
+  }, [])
 
   const renderContent = () => {
     return (
@@ -108,7 +113,7 @@ const OnBoarding = () => {
       <View>{renderContent()}</View>
       <View style={styles.dotsRootContainer}>{renderDots()}</View>
       <View style={styles.button}>
-        <Button text="Continue" />
+        <Button onPress={() => navigation.navigate('Login')} text="Continue" />
       </View>
     </SafeAreaView>
   )
