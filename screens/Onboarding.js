@@ -36,9 +36,10 @@ const onBoardings = [
 const OnBoarding = ({ navigation }) => {
   const scrollX = new Animated.Value(0)
 
-  useEffect(() => {
-    AsyncStorage.setItem('user', 'true')
-  }, [])
+  const gotoLogin = () => {
+    AsyncStorage.setItem('onboarded', 'true')
+    navigation.navigate('Home')
+  }
 
   const renderContent = () => {
     return (
@@ -113,7 +114,7 @@ const OnBoarding = ({ navigation }) => {
       <View>{renderContent()}</View>
       <View style={styles.dotsRootContainer}>{renderDots()}</View>
       <View style={styles.button}>
-        <Button onPress={() => navigation.navigate('Login')} text="Continue" />
+        <Button onPress={gotoLogin} text="Continue" />
       </View>
     </SafeAreaView>
   )

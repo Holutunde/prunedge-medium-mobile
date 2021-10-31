@@ -103,7 +103,7 @@ const Login = (props, { navigation }) => {
   }
 
   const toHome = () => {
-    props.navigation.navigate('Home')
+    props.navigation.navigate('Settings')
   }
 
   // const continueWithGoogle = () => {
