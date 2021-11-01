@@ -2,49 +2,36 @@ import React, { useState, useEffect } from 'react'
 import { View } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Loader from '../components/Loader'
-import { saveUser } from '../redux/actions/auth'
-import OnBoarding from '../screens/Onboarding'
-import Login from '../screens/Login'
+import Auth from './Auth'
 
 const Launch = ({ navigation }) => {
   const [loading, setLoading] = useState(true)
   const [viewedOboarding, setViewOboarding] = useState(false)
 
   useEffect(() => {
+    AsyncStorage.clear()
     redirect()
   }, [])
 
+  const isOnboarded = async () => {
+    const onboarded = await AsyncStorage.getItem('onboarded')
+    return !!onboarded
+  }
+
   const redirect = async () => {
     try {
-      const user = await AsyncStorage.getItem('user')
-      if (!user) {
-        setViewOboarding(true)
-      } else {
-        setViewOboarding(false)
-      }
+      const onboarded = await isOnboarded()
+      if (!onboarded) navigation.navigate('Onboarding')
+      else if (onboarded) navigation.navigate('Auth')
     } catch (err) {
-      console.log('lauch error', err)
-    } finally {
-      setLoading(false)
+      console.log('launch error', err)
+      navigation.navigate('Onboarding')
     }
   }
 
-  // const redirect = async () => {
-  //   try {
-  //     const user = await AsyncStorage.getItem('user')
-  //     const token = await AsyncStorage.getItem('token')
-
-  //     if (token && user) {
-  //       dispatch(saveUser(JSON.parse(token), JSON.parse(user)))
-  //       navigation.navigate('Login')
-  //     } else navigation.navigate('Onboarding')
-  //   } catch (err) {
-  //     console.log('launch error', err)
-  //   }
-  // }
   return (
     <View style={{ flex: 1 }}>
-      {loading ? <Loader /> : viewedOboarding ? <Login /> : <OnBoarding />}
+      <Loader />
     </View>
   )
 }

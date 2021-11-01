@@ -1,17 +1,30 @@
-import React, { useState } from 'react'
-import { StyleSheet, TouchableOpacity, Text, View } from 'react-native'
+import React, { useState, useContext } from 'react'
+import {
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  View,
+  StatusBar,
+  Switch,
+} from 'react-native'
 import SvgUri from 'expo-svg-uri'
-import CustomSwitch from '../components/CustomSwitch'
+
 import { SingleHeader } from '../components/Header'
+import { ThemeContext } from '../Util/ThemeContext'
+import ToggleSwitch from 'toggle-switch-react-native'
+
+import NormalText, { BoldText } from '../components/Text'
 
 const Setting = ({ navigation }) => {
-  const [isDarktheme, setIsDarktheme] = useState(false)
+  const { theme, click, toggleTheme } = useContext(ThemeContext)
 
-  const toggleTheme = () => {
-    setIsDarktheme(!isDarktheme)
-  }
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: theme === 'light' ? '#fff' : '#272833' },
+      ]}
+    >
       <SingleHeader>Settings</SingleHeader>
       <View style={styles.imageContainer}>
         <SvgUri
@@ -21,27 +34,24 @@ const Setting = ({ navigation }) => {
       </View>
       <View style={styles.line}></View>
       <View style={styles.iconandtextcontainer}>
-        <View style={styles.innericonandtext}>
+        <View style={styles.iconandtext}>
           <SvgUri source={require('../assets/icon/telephone-icon.svg')} />
           <TouchableOpacity onPress={() => navigation.navigate('Contact')}>
-            <Text style={styles.text}>Contact Us</Text>
+            <NormalText style={styles.text}>Contact Us</NormalText>
           </TouchableOpacity>
         </View>
       </View>
       <View style={styles.iconandtextcontainer}>
-        <View style={styles.innericonandtext}>
+        <View style={styles.iconandtext}>
           <SvgUri source={require('../assets/icon/theme-icon.svg')} />
-          <Text style={styles.text}>Dark Theme</Text>
+          <NormalText style={styles.text}>Dark Theme</NormalText>
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            toggleTheme()
-          }}
-        >
-          <View pointerEvents="none">
-            <CustomSwitch roundCorner={true} selectionColor={'#0050C8'} />
-          </View>
-        </TouchableOpacity>
+        <Switch
+          trackColor={{ false: '#767577', true: '#81b0ff' }}
+          thumbColor="#0050C8"
+          value={click}
+          onValueChange={toggleTheme}
+        />
       </View>
     </View>
   )
@@ -74,18 +84,16 @@ const styles = StyleSheet.create({
     marginLeft: 50,
   },
   iconandtextcontainer: {
-    marginTop: 50,
-    marginHorizontal: 30,
     flexDirection: 'row',
+    marginTop: 30,
+    marginHorizontal: 30,
     justifyContent: 'space-between',
   },
-  innericonandtext: {
+  iconandtext: {
+    marginTop: 15,
     flexDirection: 'row',
   },
   text: {
-    color: '#393A4A',
-    fontWeight: '500',
-    fontFamily: 'UbuntuRegular',
     marginLeft: 20,
   },
 })

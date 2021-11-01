@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Pressable } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import SvgUri from 'expo-svg-uri'
 import { BoldText } from './Text'
 import { withNavigation } from 'react-navigation'
@@ -21,14 +21,14 @@ const Header = ({
       }}
       {...props}
     >
-      <Pressable
+      <TouchableOpacity
         onPress={() => (onBackPress ? onBackPress?.() : navigation.goBack())}
       >
         <SvgUri
           style={{ paddingTop: 9, paddingRight: 15 }}
           source={require('../assets/icon/back-arrow-icon.svg')}
         />
-      </Pressable>
+      </TouchableOpacity>
       <BoldText style={{ fontSize: 20 }}>{children}</BoldText>
     </View>
   )
