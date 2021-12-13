@@ -9,7 +9,7 @@ const Launch = ({ navigation }) => {
   const [viewedOboarding, setViewOboarding] = useState(false)
 
   useEffect(() => {
-    // AsyncStorage.clear()
+    AsyncStorage.clear()
     redirect()
   }, [])
 

@@ -12,7 +12,11 @@ export default ({ children }) => {
         flex: 1,
       }}
     >
-      <StatusBar barStyle={`${theme === 'light' ? 'dark' : 'light'}-content`} />
+      <StatusBar
+        barStyle={`${theme === 'light' ? 'light' : 'light'}-content`}
+        translucent={true}
+        hidden={false}
+      />
 
       <View
         style={{

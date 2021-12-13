@@ -380,7 +380,7 @@ const Home = ({ navigation }) => {
     <View
       style={[
         styles.container,
-        { backgroundColor: theme === 'light' ? '#fff' : '#272833' },
+        { backgroundColor: theme === 'light' ? '#ffffff' : '#272833' },
       ]}
     >
       <View style={styles.logo}>
@@ -537,10 +537,10 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    height: '100%',
   },
   logo: {
     height: 80,
+    paddingTop: 25,
     width: '100%',
     justifyContent: 'center',
     paddingLeft: 27,
