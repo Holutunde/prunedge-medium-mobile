@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import {
   Animated,
   Dimensions,
@@ -8,6 +8,7 @@ import {
   Text,
   Image,
 } from 'react-native'
+import { ThemeContext } from '../Util/ThemeContext'
 import SvgUri from 'expo-svg-uri'
 import Button from '../components/Button'
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -34,6 +35,7 @@ const onBoardings = [
 ]
 
 const OnBoarding = ({ navigation }) => {
+  const { theme } = useContext(ThemeContext)
   const scrollX = new Animated.Value(0)
 
   const gotoLogin = () => {
@@ -104,7 +106,12 @@ const OnBoarding = ({ navigation }) => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        { backgroundColor: theme === 'light' ? '#fff' : '#272833' },
+      ]}
+    >
       <View style={styles.logo}>
         <Image
           style={styles.image}

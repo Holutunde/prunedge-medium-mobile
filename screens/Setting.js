@@ -17,7 +17,12 @@ import NormalText, { BoldText } from '../components/Text'
 
 const Setting = ({ navigation }) => {
   const { theme, click, toggleTheme } = useContext(ThemeContext)
-
+  const HomeIcon = (
+    <SvgUri
+      style={styles.image}
+      source={require('../assets/icon/setting-icon.svg')}
+    />
+  )
   return (
     <View
       style={[
@@ -25,6 +30,7 @@ const Setting = ({ navigation }) => {
         { backgroundColor: theme === 'light' ? '#fff' : '#272833' },
       ]}
     >
+      <HomeIcon />
       <SingleHeader>Settings</SingleHeader>
       <View style={styles.imageContainer}>
         <SvgUri
