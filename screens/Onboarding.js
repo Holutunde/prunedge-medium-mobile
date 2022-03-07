@@ -109,7 +109,7 @@ const OnBoarding = ({ navigation }) => {
     <SafeAreaView
       style={[
         styles.container,
-        { backgroundColor: theme === 'light' ? '#fff' : '#272833' },
+        { backgroundColor: theme === 'light' ? 'ffffff' : '#272833' },
       ]}
     >
       <View style={styles.logo}>
