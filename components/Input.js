@@ -15,6 +15,7 @@ import {
   red,
   veryLightGrey,
 } from '../config/colors'
+import { Ionicons } from '@expo/vector-icons'
 
 const Input = ({
   value,
@@ -37,8 +38,8 @@ const Input = ({
       style={{
         borderRadius: 8,
         borderWidth: 1,
-        borderColor: isFocused ? red : borderDarkGrey,
-        width: '100%',
+        borderColor: isFocused ? '#0053F0' : '#000000',
+        width: '90%',
         height: multiline ? 150 : 50,
         flexDirection: 'row',
         alignItems: 'center',
@@ -55,11 +56,11 @@ const Input = ({
         <Text
           style={{
             position: 'absolute',
-            left: 5,
+            left: 7,
+            paddingHorizontal: 3,
             top: -12,
             backgroundColor: '#fff',
-            paddingHorizontal: 5,
-            color: '#D33A39',
+            color: isFocused ? '#0053F0' : 'rgba(0, 0, 0, .6)',
           }}
         >
           {placeholder}
@@ -113,140 +114,3 @@ const Input = ({
 }
 
 export default Input
-
-export const Picker = ({
-  value,
-  onSelect,
-  placeholder = '',
-  coverStyle = {},
-  RightIcon = null,
-  LeftIcon = null,
-  style = {},
-  items = [],
-  itemStyle = {},
-  hasSearch = true,
-}) => {
-  const bottomSheet = useRef()
-  const [search, setSearch] = useState('')
-
-  return (
-    <>
-      <TouchableOpacity
-        onPress={() => bottomSheet.current?.open?.()}
-        style={{
-          borderRadius: 8,
-          borderWidth: 1,
-          borderColor: borderDarkGrey,
-          width: '100%',
-          height: 50,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          marginVertical: 10,
-          paddingHorizontal: 5,
-          position: 'relative',
-          ...coverStyle,
-        }}
-      >
-        {!!value && (
-          <Text
-            style={{
-              position: 'absolute',
-              left: 5,
-              top: -12,
-              backgroundColor: '#fff',
-              paddingHorizontal: 5,
-              color: 'rgba(0, 0, 0, 0.6)',
-            }}
-          >
-            {placeholder}
-          </Text>
-        )}
-        {LeftIcon && <LeftIcon />}
-        <View
-          style={{
-            marginHorizontal: 10,
-            flex: 1,
-            height: 60,
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            ...style,
-          }}
-        >
-          <Text
-            style={{
-              color: value ? textColor : textColorSecondary,
-              // fontSize: 16,
-            }}
-          >
-            {value ? value?.label : placeholder}
-          </Text>
-        </View>
-        {RightIcon && <RightIcon />}
-      </TouchableOpacity>
-      <RBSheet
-        ref={bottomSheet}
-        height={Dimensions.get('window').height * 0.65}
-        duration={500}
-        dragFromTopOnly
-        closeOnDragDown
-        customStyles={{
-          container: {
-            borderTopLeftRadius: 16,
-            borderTopRightRadius: 16,
-          },
-          draggableIcon: {
-            width: 50,
-            height: 5,
-            borderRadius: 100,
-            backgroundColor: borderDarkGrey,
-          },
-        }}
-      >
-        <View style={{ flex: 1 }}>
-          {hasSearch && (
-            <View style={{ paddingHorizontal: 20 }}>
-              <Input
-                placeholder="Search"
-                value={search}
-                onChangeText={(val) => setSearch(val)}
-                coverStyle={{ height: 50 }}
-                style={{ height: 50 }}
-              />
-            </View>
-          )}
-          <ScrollView style={{ padding: 20 }}>
-            {items
-              .filter((item) =>
-                item.label?.toLowerCase()?.includes(search?.toLowerCase()),
-              )
-              .map((item) => {
-                return (
-                  <TouchableOpacity
-                    onPress={() => {
-                      bottomSheet.current?.close?.()
-                      onSelect(item)
-                    }}
-                    key={item.value}
-                    style={{
-                      paddingVertical: 10,
-                      ...itemStyle,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        fontSize: 16,
-                        color: value?.value === item.value ? red : textColor,
-                      }}
-                    >
-                      {item.label}
-                    </Text>
-                  </TouchableOpacity>
-                )
-              })}
-          </ScrollView>
-        </View>
-      </RBSheet>
-    </>
-  )
-}
