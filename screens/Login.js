@@ -17,11 +17,6 @@ import SvgUri from 'expo-svg-uri'
 import * as Animatable from 'react-native-animatable'
 import Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import * as Google from "expo-google-app-auth";
-// import GoogleAuthButton from "../components/GoogleAuth";
-// import { saveToken, handleGoogleSignIn } from "../helper";
-// import {GoogleSigninButton } from "react-native-google-signin";
 
 const Login = (props, { navigation }) => {
   const [loading, setLoading] = useState(false)
@@ -133,10 +128,18 @@ const Login = (props, { navigation }) => {
             />
             <View style={styles.line}></View>
 
-            <View style={styles.action}>
+            <View
+              style={[
+                styles.action,
+                {
+                  borderColor: isFocused ? '#0053F0' : '#000000',
+                },
+              ]}
+            >
               <FontAwesome name="user-o" color="#0053F0" size={20} />
               <TextInput
                 onFocus={() => setFocused(true)}
+                onBlur={() => setFocused(false)}
                 placeholder="Email"
                 style={styles.textInput}
                 autoCapitalize="none"
@@ -144,9 +147,18 @@ const Login = (props, { navigation }) => {
               />
             </View>
 
-            <View style={styles.action}>
+            <View
+              style={[
+                styles.action,
+                {
+                  borderColor: isFocused ? '#0053F0' : '#000000',
+                },
+              ]}
+            >
               <Feather name="lock" color="#0053F0" size={20} />
               <TextInput
+                onBlur={() => setFocused(false)}
+                onFocus={() => setFocused(true)}
                 placeholder="********"
                 secureTextEntry={loginData.secureTextEntry ? true : false}
                 style={styles.textInput}
@@ -256,7 +268,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 15,
     height: 50,
-    borderColor: '#000000',
+
     borderRadius: 8,
   },
   textInput: {
