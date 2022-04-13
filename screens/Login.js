@@ -14,22 +14,19 @@ import {
   ToastAndroid,
 } from 'react-native'
 import SvgUri from 'expo-svg-uri'
+import Input from '../components/Input'
 import * as Animatable from 'react-native-animatable'
+import { textColorSecondary } from '../config/colors'
+import { Ionicons } from '@expo/vector-icons'
 import Feather from 'react-native-vector-icons/Feather'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import * as Google from "expo-google-app-auth";
-// import GoogleAuthButton from "../components/GoogleAuth";
-// import { saveToken, handleGoogleSignIn } from "../helper";
-// import {GoogleSigninButton } from "react-native-google-signin";
 
 const Login = (props, { navigation }) => {
   const [loading, setLoading] = useState(false)
-  const [isFocused, setFocused] = useState(false)
 
   const [loginData, setLoginData] = useState({
-    email: ' ',
-    password: ' ',
+    email: '',
+    password: '',
     check_textInputChange: false,
     secureTextEntry: true,
   })
@@ -133,34 +130,27 @@ const Login = (props, { navigation }) => {
             />
             <View style={styles.line}></View>
 
-            <View style={styles.action}>
-              <FontAwesome name="user-o" color="#0053F0" size={20} />
-              <TextInput
-                onFocus={() => setFocused(true)}
-                placeholder="Email"
-                style={styles.textInput}
-                autoCapitalize="none"
-                onChangeText={(email) => handleInput({ email })}
-              />
-            </View>
-
-            <View style={styles.action}>
-              <Feather name="lock" color="#0053F0" size={20} />
-              <TextInput
-                placeholder="********"
-                secureTextEntry={loginData.secureTextEntry ? true : false}
-                style={styles.textInput}
-                autoCapitalize="none"
-                onChangeText={(password) => handleInput({ password })}
-              />
-              <TouchableOpacity onPress={updateSecureTextEntry}>
-                {loginData.secureTextEntry ? (
-                  <Feather name="eye-off" color="grey" size={20} />
-                ) : (
-                  <Feather name="eye" color="grey" size={20} />
-                )}
-              </TouchableOpacity>
-            </View>
+            <Input
+              value={loginData.email}
+              onChangeText={(email) => handleInput({ email })}
+              placeholder="Email Address"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              LeftIcon={() => <Feather name="lock" size={20} />}
+            />
+            <Input
+              value={loginData.password}
+              onChangeText={(password) => handleInput({ password })}
+              placeholder="Password"
+              secureTextEntry
+              LeftIcon={() => (
+                <Ionicons
+                  color={textColorSecondary}
+                  name="md-lock-open"
+                  size={22}
+                />
+              )}
+            />
 
             <TouchableOpacity onPress={performLogin} style={styles.signIn}>
               <Text style={styles.textSign}>Log in</Text>
@@ -191,17 +181,10 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  // googleSignIn: {
-  //   width: 200,
-  //   height: 60,
-  //   flexDirection: 'row',
-  //   justifyContent: 'space-evenly',
-  //   marginTop: 12,
-  // },
   container: {
-    // backgroundColor: 'red',
     height: '100%',
     width: '100%',
+    backgroundColor: '#fff',
   },
   inputArea: {
     justifyContent: 'center',
@@ -209,12 +192,7 @@ const styles = StyleSheet.create({
     width: '85%',
     marginBottom: 20,
   },
-  textInput: {
-    color: '#393A4A',
-    width: '100%',
-    fontSize: 17,
-    paddingStart: 10,
-  },
+
   loginVector: {
     alignItems: 'center',
   },
@@ -244,24 +222,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-  },
-  action: {
-    flexDirection: 'row',
-    width: '90%',
-    marginTop: 20,
-    height: 45,
-    alignItems: 'center',
-    borderRadius: 10,
-    flexDirection: 'row',
-    borderWidth: 1,
-    padding: 15,
-    height: 50,
-    borderColor: '#000000',
-    borderRadius: 8,
-  },
-  textInput: {
-    width: '88%',
-    paddingLeft: 10,
-    color: '#05375a',
   },
 })
