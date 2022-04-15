@@ -74,8 +74,6 @@ const Input = ({
       <TextInput
         value={value}
         onChangeText={onChangeText}
-        onFocus={() => setFocused(true)}
-        onBlur={() => setFocused(false)}
         placeholder={placeholder}
         placeholderTextColor={textColorSecondary}
         autoCapitalize={secureTextEntry ? 'none' : autoCapitalize}
