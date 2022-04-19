@@ -67,6 +67,7 @@ const Signup = (props, { navigation }) => {
 
       const loginRes = await response.json()
       console.log('Login Response', loginRes)
+      console.log(loginRes)
       if (loginRes.success == undefined) {
         const message = `${Object.keys(loginRes)} ${
           Object.values(loginRes)[0][0]

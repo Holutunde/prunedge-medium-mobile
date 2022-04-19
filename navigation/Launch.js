@@ -5,9 +5,6 @@ import Loader from '../components/Loader'
 import Auth from './Auth'
 
 const Launch = ({ navigation }) => {
-  const [loading, setLoading] = useState(true)
-  const [viewedOboarding, setViewOboarding] = useState(false)
-
   useEffect(() => {
     AsyncStorage.clear()
     redirect()
