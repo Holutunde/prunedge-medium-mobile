@@ -40,7 +40,7 @@ const OnBoarding = ({ navigation }) => {
 
   const gotoLogin = () => {
     AsyncStorage.setItem('onboarded', 'true')
-    navigation.navigate('Signup')
+    navigation.navigate('Login')
   }
 
   const renderContent = () => {

@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import {
   StyleSheet,
   View,
-  TextInput,
   Text,
-  Image,
   Keyboard,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
